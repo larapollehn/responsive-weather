@@ -13,13 +13,13 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.post('/api', (req, res) => {
-    let city = req.body['city'];
+    let cityName = req.body['cityName'];
     if(DEBUG === true) {
         res.send(mockObj);
     }else {
         axios({
             method: 'get',
-            url: API_URL + '?q=' + city + '&appid=' + API_KEY
+            url: API_URL + '?q=' + cityName + '&appid=' + API_KEY
         }).then((response) => {
             res.send(JSON.stringify(response.data));
         }).catch((error) => {

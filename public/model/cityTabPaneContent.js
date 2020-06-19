@@ -1,7 +1,22 @@
 const ICON_URL = 'http://openweathermap.org/img/wn/';
 
-function tabContentTemplate(tab){
-    const data = tab.data;
+/**
+ *The tap-pane(<div>) belonging to a City has Content displaying the data belonging to a city
+ *  fetched from the open weather api (City fetchData()) and divided upon three card elements(<div>)
+ */
+function CityTabPaneContent(city) {
+    let self = {};
+    self.tabPaneContent = tabPaneContentTemplate(city);
+
+    self.getTabPaneContent = function () {
+        console.log('getTabPaneContent', city);
+        return self.tabPaneContent;
+    }
+    return self;
+}
+
+function tabPaneContentTemplate(city){
+    const data = city.data;
     let country = data['sys']['country']; // country code e.g. 'GB' for england
     let timeStamp = unixTimeConverter(data['dt']); // unix time converted to human-readable time
     let weatherMain = data['weather'][0]['main']; // string
@@ -14,11 +29,11 @@ function tabContentTemplate(tab){
     let sunrise = unixTimeConverter(data['sys']['sunrise']); // unix time converted to human-readable time
     let sunset = unixTimeConverter(data['sys']['sunset']); // unix time converted to human-readable time
     return `
-                    <div class="card">
+                    <div class="card"> 
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <p class="card-text">${tab.city} | ${country}</p>
+                                <p class="card-text">${city.city} | ${country}</p>
                                 <h6 class="card-subtitle text-muted">as of ${timeStamp}</h6>
                                 <h2 class="card-title">${currentTemp}°</h2>
                                 <h4 class="card-subtitle text-muted">${weatherMain}</h4>
@@ -70,22 +85,3 @@ function tabContentTemplate(tab){
             `;
 }
 
-function tabMenuTemplate(tab){
-    if (document.getElementsByClassName('nav-item').length === 0) {
-        return `
-                        <a class="nav-link active" id="${tab.id}-tab" data-toggle="tab" role="tab" aria-controls="${tab.id}" aria-selected="true">
-                            ${tab.city}
-                            <button type="button" class="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </a>`
-    } else {
-        return `
-                        <a class="nav-link" id="${tab.id}-tab" data-toggle="tab" role="tab" aria-controls="${tab.id}" aria-selected="true">
-                            ${tab.city}
-                            <button type="button" class="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </a>`
-    }
-}

@@ -110,6 +110,7 @@ function Controller() {
             let tabPane = CityTabPane(newCity);
             self.cityTabPanes.push(tabPane);
             TAB_PANE_CONTAINER.appendChild(tabPane.tabPane);
+            self.addEventListenerToCloseButtons();
         })
     }
 

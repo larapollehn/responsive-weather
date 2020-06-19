@@ -4,13 +4,6 @@ const ICON_URL = 'http://openweathermap.org/img/wn/';
  *The tap-pane(<div>) belonging to a City has Content displaying the data belonging to a city
  *  fetched from the open weather api (City fetchData()) and divided upon three card elements(<div>)
  */
-function CityTabPaneContent(city) {
-    let self = {};
-    self.tabPaneContent = tabPaneContentTemplate(city);
-
-    return self;
-}
-
 function tabPaneContentTemplate(city){
     const data = city.data;
     let country = data['sys']['country']; // country code e.g. 'GB' for england

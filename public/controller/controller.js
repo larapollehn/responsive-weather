@@ -40,6 +40,7 @@ function Controller() {
 
     self.renderStartCity = function () {
         let startCity = self.cities[0];
+        console.log(self.cities);
         let tabPaneStartCity = self.cityTabPanes[0].tabPane;
         fillTabPaneWithContent(startCity, tabPaneStartCity);
     }
@@ -53,6 +54,12 @@ function Controller() {
         closeBtns.forEach(btn => {
             btn.addEventListener('click', (event) => {
                 let cityId = event.target.id.replace('-span', '');
+                for (let i = 0; i < self.cities.length; i++){
+                    if(self.cities.id === cityId){
+                        self.cities = self.cities.splice(i, 1);
+                        console.log(self.cities);
+                    }
+                }
                 //stop propagation of calling events, so nav-item event listener is not invoked
                 event.stopPropagation();
                 //find the nav-item (<li>) whose closeBtn was clicked
@@ -64,6 +71,15 @@ function Controller() {
                 let tabPaneOfCity = document.getElementById(cityId);
                 TAB_PANE_CONTAINER.removeChild(tabPaneOfCity);
 
+                for (let i = 0; i < self.cities.length; i++){
+                    if(self.cities[i].id === cityId) {
+                        self.cities.splice(i, 1);
+                        console.log(self.cities);
+                    }
+                }
+                if(self.cities.length > 0){
+                    showActiveCity(self.cities[0]);
+                }
             })
         })
     }

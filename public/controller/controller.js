@@ -1,33 +1,33 @@
-const DEBUG = true;
 const LOCAL_STORAGE_KEY = 'CITY'
 
 function Controller() {
     let self = {};
     self.cityNames = [];
     self.cities = [];
-    self.cityNavItems = [];
     self.cityTabPanes = [];
-    self.cityPaneContent = [];
 
     self.setup = function () {
-        if (DEBUG) {
-            if (self.cityNames.length === 0) {
-                self.cityNames.push('London', 'Paris');
-            }
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(self.cityNames));
+        if(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).length === 0 || localStorage.getItem(LOCAL_STORAGE_KEY) === null){
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(['London', 'Paris']));
+            self.cityNames = ['London', 'Paris'];
+            self.cityNames.forEach(nameOfCity => {
+                let city = City(nameOfCity);
+                self.cities.push(city);
+            })
+            // Display cute thing to get user to add a city
+        } else {
+            let cities = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+            self.cityNames = cities;
+            cities.forEach(nameOfCity => {
+                let city = City(nameOfCity);
+                self.cities.push(city);
+            })
         }
-        let cities = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        cities.forEach(nameOfCity => {
-            let city = City(nameOfCity);
-            self.cities.push(city);
-        })
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(self.cityNames));
     }
 
     self.renderStartView = function () {
         self.cities.forEach(city => {
                 let navItem = CityNavItem(city).li;
-                self.cityNavItems.push(navItem);
                 NAV_TABS_UL.appendChild(navItem);
 
                 let tabPane = CityTabPane(city);
@@ -40,13 +40,26 @@ function Controller() {
 
     self.renderStartCity = function () {
         let startCity = self.cities[0];
-        console.log(self.cities);
         let tabPaneStartCity = self.cityTabPanes[0].tabPane;
         fillTabPaneWithContent(startCity, tabPaneStartCity);
     }
 
-    self.saveStateToLocalStorage = function () {
-
+    self.saveNewState = function () {
+        console.log(self.cities, self.cityNames, self.cityTabPanes);
+        let names = [];
+        let tabPanes = [];
+        for (let i = 0; i < self.cities.length; i++){
+            names.push(self.cities[i].name);
+            for (let j = 0; j < self.cityTabPanes; j++){
+                if(self.cities[i].id === self.cityTabPanes[j].id){
+                    tabPanes.push(self.cityTabPanes[j])
+                }
+            }
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(names));
+        self.cityNames = names;
+        self.cityTabPanes = tabPanes;
+        console.log(self.cities, self.cityNames, self.cityTabPanes);
     }
 
     self.addEventListenerToCloseButtons = function () {
@@ -74,13 +87,21 @@ function Controller() {
                 for (let i = 0; i < self.cities.length; i++){
                     if(self.cities[i].id === cityId) {
                         self.cities.splice(i, 1);
-                        console.log(self.cities);
                     }
                 }
                 if(self.cities.length > 0){
                     showActiveCity(self.cities[0]);
                 }
+                self.saveNewState();
             })
+        })
+    }
+
+    self.addEventListenerToAddCityBtn = function () {
+        let addCityBtn = document.getElementById('addCityBtn');
+        addCityBtn.addEventListener('click', () => {
+            let newCityName = document.getElementById('newCityName').value;
+            console.log(newCityName);
         })
     }
 

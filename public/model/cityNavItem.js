@@ -12,7 +12,6 @@ function CityNavItem(city) {
 }
 
 function showActiveCity(city) {
-    console.log(city);
     /**
      * if the tab nav-item(<li>) of a city is clicked
      * the nav-item belonging to it is made active by adding the css class active

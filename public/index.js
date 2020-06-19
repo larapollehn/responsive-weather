@@ -3,6 +3,7 @@ function main() {
     controller.setup();
     controller.renderStartView();
     controller.addEventListenerToCloseButtons();
+    controller.addEventListenerToAddCityBtn();
 }
 
 main();

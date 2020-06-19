@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const DEBUG = true;
+const DEBUG = false;
 require('dotenv').config();
 
 const API_KEY = process.env.KEY;

@@ -1,22 +1,45 @@
-.weatherIcon{
+.weatherIcon {
     width: 100px;
     height: 100px;
     background-size: cover;
 }
 
-.close{
+.close {
     margin-left: 10px;
     width: 20px;
-
 }
 
-.nav-link{
-}
-
-.nav-item{
+.nav-item {
     float: left;
 }
 
-.sunImage{
+.sunImage {
     width: 50px;
+}
+
+/** **/
+
+.meter {
+    height: 20px; /* Can be anything */
+    background: #555;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.meter > span {
+    display: block;
+    height: 12px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: cornflowerblue;
+    box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    padding-bottom: 5px;
 }

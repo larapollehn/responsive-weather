@@ -39,17 +39,21 @@ function tabPaneContentTemplate(city){
                             <div class="col">
                                 <h2 class="card-two-title">Cloudiness</h2>
                                 <p class="card-text">${cloudiness}%</p>
-                                <div class="card-two-icon" id="cloudIcon"></div>
+                                <div class="meter">
+                                    <span style="width: ${cloudiness}%"></span>
+                                </div>
                             </div>
                             <div class="col">
                                 <h2 class="card-two-title">Humidity</h2>
                                 <p class="card-text">${humidity}%</p>
-                                <div class="card-two-icon" id="humidityIcon"></div>
+                                <div class="meter">
+                                    <span style="width: ${humidity}%"></span>
+                                </div>
                             </div>
                             <div class="col">
                                 <h2 class="card-two-title">Windspeed</h2>
                                 <p class="card-text">${windSpeed}m/s</p>
-                                <div class="card-two-icon" id="windIcon"></div>
+                                <div class="windSpeed"></div>
                             </div>
                         </div>
                     </div>

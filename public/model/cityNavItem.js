@@ -19,6 +19,10 @@ function tabLiTemplate(city) {
     li.setAttribute('role', 'presentation');
 
     li.addEventListener('click', function (event) {
+        /**
+         * is the tab-pane linked to this nav-item li is empty,
+         * the city data is fetched and the tab-pane filled with content
+         */
         let tabPane = document.getElementById(event.target.id.replace('-tab', ''));
         if(!tabPane.hasChildNodes()){
             fillTabPaneWithContent(city, tabPane);
@@ -37,8 +41,10 @@ function tabLiTemplate(city) {
         thisNavItem.classList.add('active');
         /**
          * if the tab nav-item(<li>) of a city is clicked
-         * the tab-pane(<div>) belonging to it is made visible trough adding the classes active nd show
+         * the tab-pane(<div>) belonging to it is made visible trough adding the classes active and show
+         * as well as setting style option display to block
          * the former active tap-pane is made invisible by removing the classes active and show
+         * as well as setting the style option display to none
          */
         let currentActiveTab = document.getElementsByClassName('show')[0];
         if (currentActiveTab) {

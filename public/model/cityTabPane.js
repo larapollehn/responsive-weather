@@ -28,6 +28,10 @@ function CityTabPane(city) {
     return self;
 }
 
+/**
+ * if the given tab-pane (tabPane) is empty the data for the given city is fetched
+ * and the inner HTML of given tabPane is filled with tab content based on the template
+ */
 function fillTabPaneWithContent(city, tabPane) {
     if(!city.data && tabPane.childNodes.length === 0){
         city.fetchData().then((response) => {

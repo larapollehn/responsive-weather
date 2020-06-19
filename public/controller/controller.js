@@ -40,8 +40,8 @@ function Controller() {
 
     self.renderStartCity = function () {
         let startCity = self.cities[0];
-        let tabPaneStartCity = self.cityTabPanes[0];
-        tabPaneStartCity.fillTabPaneWithContent(startCity);
+        let tabPaneStartCity = self.cityTabPanes[0].tabPane;
+        fillTabPaneWithContent(startCity, tabPaneStartCity);
     }
 
 

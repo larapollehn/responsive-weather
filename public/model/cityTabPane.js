@@ -8,20 +8,6 @@ function CityTabPane(city) {
     self.tabPane = tabPaneTemplate(city);
 
     /**
-     * remove all child nodes in the tabPane and append new content
-     */
-    self.fillTabPaneWithContent = function (city) {
-        if(!city.data && self.tabPane.childNodes.length === 0){
-            city.fetchData().then((response) => {
-                city.data = response.data;
-                self.tabPane.innerHTML = tabPaneContentTemplate(city);
-            }).catch((error) => {
-                console.log(error);
-            })
-        }
-    }
-
-    /**
      * add css classes managing visibility of tab panes to this tab pane
      * and remove from all other tab panes if they have those classes
      */
@@ -42,6 +28,17 @@ function CityTabPane(city) {
     return self;
 }
 
+function fillTabPaneWithContent(city, tabPane) {
+    if(!city.data && tabPane.childNodes.length === 0){
+        city.fetchData().then((response) => {
+            city.data = response.data;
+            tabPane.innerHTML = tabPaneContentTemplate(city);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+}
+
 function tabPaneTemplate(city) {
     let div = document.createElement('div');
     div.classList.add('city-pane');
@@ -52,6 +49,6 @@ function tabPaneTemplate(city) {
     }
     div.id = city.id;
     div.setAttribute('role', 'tabpanel');
-    div.setAttribute('aria-labelledby', city.id + '-tab');
+    //div.setAttribute('aria-labelledby', city.id + '-tab');
     return div;
 }

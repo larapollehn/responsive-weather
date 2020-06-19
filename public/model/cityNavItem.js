@@ -18,7 +18,12 @@ function tabLiTemplate(city) {
     li.classList.add('nav-item');
     li.setAttribute('role', 'presentation');
 
-    li.addEventListener('click', function () {
+    li.addEventListener('click', function (event) {
+        let tabPane = document.getElementById(event.target.id.replace('-tab', ''));
+        if(!tabPane.hasChildNodes()){
+            fillTabPaneWithContent(city, tabPane);
+        }
+
         /**
          * if the tab nav-item(<li>) of a city is clicked
          * the nav-item belonging to it is made active by adding the css class active
@@ -30,7 +35,6 @@ function tabLiTemplate(city) {
         }
         let thisNavItem = document.getElementById(city.id+'-tab');
         thisNavItem.classList.add('active');
-
         /**
          * if the tab nav-item(<li>) of a city is clicked
          * the tab-pane(<div>) belonging to it is made visible trough adding the classes active nd show
@@ -40,20 +44,23 @@ function tabLiTemplate(city) {
         if (currentActiveTab) {
             currentActiveTab.classList.remove('active');
             currentActiveTab.classList.remove('show');
+            currentActiveTab.style.display = 'none';
             let nextActiveTabId = city.id;
             let nextActiveContent = document.getElementById(nextActiveTabId);
             if(nextActiveContent) {
                 nextActiveContent.classList.add('show');
                 nextActiveContent.classList.add('active');
+                nextActiveContent.style.display = 'block';
             }
         }
+
     });
     return li;
 }
 function tabAContent(city){
     if (document.getElementsByClassName('nav-item').length === 0) {
         return `
-                        <a class="nav-link active" id="${city.id}-tab" data-toggle="tab" role="tab" aria-controls="${city.id}" aria-selected="true">
+                        <a class="nav-link active" id="${city.id}-tab"  role="tab">
                             ${city.name}
                             <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -61,7 +68,7 @@ function tabAContent(city){
                         </a>`
     } else {
         return `
-                        <a class="nav-link" id="${city.id}-tab" data-toggle="tab" role="tab" aria-controls="${city.id}" aria-selected="true">
+                        <a class="nav-link" id="${city.id}-tab" role="tab" >
                             ${city.name}
                             <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>

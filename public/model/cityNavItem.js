@@ -3,13 +3,10 @@
  * this nav-item is represented by this class
  */
 function CityNavItem(city) {
-    console.log(city);
     let self = {};
     self.li = tabLiTemplate(city);
     self.a = tabAContent(city);
-    console.log(self.a);
     self.li.innerHTML = self.a;
-    console.log(self.li);
 
     /**
      * add css class managing visibility of tab-pane belonging to this nav-item
@@ -23,7 +20,7 @@ function CityNavItem(city) {
         let thisNavItem = document.getElementById(city.id+'-tab');
         thisNavItem.classList.add('active');
     }
-    return self.li;
+    return self;
 }
 
 
@@ -51,7 +48,6 @@ function tabLiTemplate(city) {
     return li;
 }
 function tabAContent(city){
-    console.log(city);
     if (document.getElementsByClassName('nav-item').length === 0) {
         return `
                         <a class="nav-link active" id="${city.id}-tab" data-toggle="tab" role="tab" aria-controls="${city.id}" aria-selected="true">

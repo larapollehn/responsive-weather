@@ -4,10 +4,9 @@
  * in this tab-pane is the tab-content
  */
 function CityTabPane(city) {
+    console.log(city);
     let self = {};
     self.tabPane = tabPaneTemplate(city);
-    self.cityTabPaneContent = CityTabPaneContent(city);
-    self.tabPaneContent = self.cityTabPaneContent.getTabPaneContent();
 
     /**
      * remove all child nodes in the tabPane and append new content

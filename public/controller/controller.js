@@ -26,11 +26,11 @@ function Controller() {
 
     self.renderStartView = function () {
         self.cities.forEach(city => {
-                let navItem = CityNavItem(city);
+                let navItem = CityNavItem(city).li;
                 self.cityNavItems.push(navItem);
                 NAV_TABS_UL.appendChild(navItem);
 
-                let tabPane = CityTabPane(city);
+                let tabPane = CityTabPane(city).tabPane;
                 self.cityTabPanes.push(tabPane);
                 TAB_PANE_CONTAINER.appendChild(tabPane);
             }

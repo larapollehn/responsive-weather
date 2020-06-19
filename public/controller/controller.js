@@ -111,6 +111,7 @@ function Controller() {
             self.cityTabPanes.push(tabPane);
             TAB_PANE_CONTAINER.appendChild(tabPane.tabPane);
             self.addEventListenerToCloseButtons();
+            self.saveNewState();
         })
     }
 

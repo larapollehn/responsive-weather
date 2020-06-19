@@ -7,7 +7,7 @@ function Controller() {
     self.cityTabPanes = [];
 
     self.setup = function () {
-        if(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).length === 0 || localStorage.getItem(LOCAL_STORAGE_KEY) === null){
+        if(localStorage.getItem(LOCAL_STORAGE_KEY) === null){
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(['London', 'Paris']));
             self.cityNames = ['London', 'Paris'];
             self.cityNames.forEach(nameOfCity => {
@@ -101,7 +101,15 @@ function Controller() {
         let addCityBtn = document.getElementById('addCityBtn');
         addCityBtn.addEventListener('click', () => {
             let newCityName = document.getElementById('newCityName').value;
-            console.log(newCityName);
+            self.cityNames.push(newCityName);
+            let newCity = City(newCityName);
+            self.cities.push(newCity);
+            let navItem = CityNavItem(newCity).li;
+            NAV_TABS_UL.appendChild(navItem);
+
+            let tabPane = CityTabPane(newCity);
+            self.cityTabPanes.push(tabPane);
+            TAB_PANE_CONTAINER.appendChild(tabPane.tabPane);
         })
     }
 

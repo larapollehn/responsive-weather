@@ -31,6 +31,7 @@ function showActiveCity(city) {
      * as well as setting the style option display to none
      */
     let currentActiveTab = document.getElementsByClassName('show')[0];
+    console.log(currentActiveTab);
     if (currentActiveTab) {
         currentActiveTab.classList.remove('active');
         currentActiveTab.classList.remove('show');
@@ -43,17 +44,19 @@ function showActiveCity(city) {
             nextActiveContent.style.display = 'block';
         }
     } else {
+        console.log('hello')
         let nextActiveTabId = city.id;
         let nextActiveContent = document.getElementById(nextActiveTabId);
         console.log(nextActiveContent);
         if (nextActiveContent) {
-            nextActiveContent.classList.add('show');
             nextActiveContent.classList.add('active');
+            nextActiveContent.classList.add('show');
             nextActiveContent.style.display = 'block';
             let nextActiveTabPane = document.getElementById(city.id);
-            fillTabPaneWithContent(city, nextActiveTabPane);
+            if(!nextActiveTabPane.hasChildNodes()){
+                fillTabPaneWithContent(city, nextActiveTabPane);
+            }
         }
-
     }
 }
 
@@ -63,11 +66,13 @@ function tabLiTemplate(city) {
     li.setAttribute('role', 'presentation');
 
     li.addEventListener('click', function (event) {
+        console.log(city, event.target);
         /**
          * is the tab-pane linked to this nav-item li is empty,
          * the city data is fetched and the tab-pane filled with content
          */
         let tabPane = document.getElementById(event.target.id.replace('-tab', ''));
+        console.log(tabPane);
         if(!tabPane.hasChildNodes()){
             fillTabPaneWithContent(city, tabPane);
         }

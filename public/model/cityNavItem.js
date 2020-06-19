@@ -19,7 +19,11 @@ function tabLiTemplate(city) {
     li.setAttribute('role', 'presentation');
 
     li.addEventListener('click', function () {
-        console.log(city);
+        /**
+         * if the tab nav-item(<li>) of a city is clicked
+         * the nav-item belonging to it is made active by adding the css class active
+         * the former active li is made inactive trough removing the css class active
+         */
         let currentActiveNavItem = NAV_TABS_UL.getElementsByClassName('active');
         if (currentActiveNavItem){
             currentActiveNavItem[0].classList.remove('active');
@@ -27,12 +31,16 @@ function tabLiTemplate(city) {
         let thisNavItem = document.getElementById(city.id+'-tab');
         thisNavItem.classList.add('active');
 
+        /**
+         * if the tab nav-item(<li>) of a city is clicked
+         * the tab-pane(<div>) belonging to it is made visible trough adding the classes active nd show
+         * the former active tap-pane is made invisible by removing the classes active and show
+         */
         let currentActiveTab = document.getElementsByClassName('show')[0];
         console.log(currentActiveTab);
         if (currentActiveTab) {
             currentActiveTab.classList.remove('active');
             currentActiveTab.classList.remove('show');
-
             let nextActiveTabId = city.id;
             let nextActiveContent = document.getElementById(nextActiveTabId);
             if(nextActiveContent) {

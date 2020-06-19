@@ -7,21 +7,26 @@ function Controller() {
     self.cityTabPanes = [];
 
     self.setup = function () {
-        if(localStorage.getItem(LOCAL_STORAGE_KEY) === null){
+        console.log('setup', localStorage.getItem(LOCAL_STORAGE_KEY));
+        if (localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(['London', 'Paris']));
             self.cityNames = ['London', 'Paris'];
             self.cityNames.forEach(nameOfCity => {
                 let city = City(nameOfCity);
                 self.cities.push(city);
-            })
+            });
+            self.renderStartView();
             // Display cute thing to get user to add a city
+        } else if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).length === 0) {
+            console.log('ls length 0');
         } else {
             let cities = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
             self.cityNames = cities;
             cities.forEach(nameOfCity => {
                 let city = City(nameOfCity);
                 self.cities.push(city);
-            })
+            });
+            self.renderStartView();
         }
     }
 
@@ -45,13 +50,12 @@ function Controller() {
     }
 
     self.saveNewState = function () {
-        console.log(self.cities, self.cityNames, self.cityTabPanes);
         let names = [];
         let tabPanes = [];
-        for (let i = 0; i < self.cities.length; i++){
+        for (let i = 0; i < self.cities.length; i++) {
             names.push(self.cities[i].name);
-            for (let j = 0; j < self.cityTabPanes; j++){
-                if(self.cities[i].id === self.cityTabPanes[j].id){
+            for (let j = 0; j < self.cityTabPanes; j++) {
+                if (self.cities[i].id === self.cityTabPanes[j].id) {
                     tabPanes.push(self.cityTabPanes[j])
                 }
             }
@@ -59,7 +63,6 @@ function Controller() {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(names));
         self.cityNames = names;
         self.cityTabPanes = tabPanes;
-        console.log(self.cities, self.cityNames, self.cityTabPanes);
     }
 
     self.addEventListenerToCloseButtons = function () {
@@ -67,29 +70,36 @@ function Controller() {
         closeBtns.forEach(btn => {
             btn.addEventListener('click', (event) => {
                 let cityId = event.target.id.replace('-span', '');
-                for (let i = 0; i < self.cities.length; i++){
-                    if(self.cities.id === cityId){
+                for (let i = 0; i < self.cities.length; i++) {
+                    if (self.cities.id === cityId) {
                         self.cities = self.cities.splice(i, 1);
                         console.log(self.cities);
                     }
                 }
                 //stop propagation of calling events, so nav-item event listener is not invoked
                 event.stopPropagation();
-                //find the nav-item (<li>) whose closeBtn was clicked
-                let navItemOfCity = document.getElementById(cityId+'-tab').parentElement;
-                //delete found nav-item from nav-tabs(<ul>)
-                NAV_TABS_UL.removeChild(navItemOfCity);
+
+                let liOfCity = document.getElementById(cityId + '-tab');
+                if(liOfCity){
+                    //find the nav-item (<li>) whose closeBtn was clicked
+                    let navItemOfCity = liOfCity.parentElement;
+                    //delete found nav-item from nav-tabs(<ul>)
+                    NAV_TABS_UL.removeChild(navItemOfCity);
+                }
+
 
                 //find tab-pane(<div>) belonging to city that is being deleted
                 let tabPaneOfCity = document.getElementById(cityId);
-                TAB_PANE_CONTAINER.removeChild(tabPaneOfCity);
+                if(tabPaneOfCity){
+                    TAB_PANE_CONTAINER.removeChild(tabPaneOfCity);
+                }
 
-                for (let i = 0; i < self.cities.length; i++){
-                    if(self.cities[i].id === cityId) {
+                for (let i = 0; i < self.cities.length; i++) {
+                    if (self.cities[i].id === cityId) {
                         self.cities.splice(i, 1);
                     }
                 }
-                if(self.cities.length > 0){
+                if (self.cities.length > 0) {
                     showActiveCity(self.cities[0]);
                 }
                 self.saveNewState();
@@ -112,6 +122,11 @@ function Controller() {
             TAB_PANE_CONTAINER.appendChild(tabPane.tabPane);
             self.addEventListenerToCloseButtons();
             self.saveNewState();
+
+            if (self.cities.length === 1) {
+                fillTabPaneWithContent(newCity, tabPane.tabPane);
+            }
+
         })
     }
 

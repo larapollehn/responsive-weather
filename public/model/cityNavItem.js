@@ -32,7 +32,6 @@ function showActiveCity(city) {
      * as well as setting the style option display to none
      */
     let currentActiveTab = TAB_PANE_CONTAINER.getElementsByClassName('show')[0];
-    console.log(currentActiveTab);
     if (currentActiveTab) {
         currentActiveTab.classList.remove('active');
         currentActiveTab.classList.remove('show');

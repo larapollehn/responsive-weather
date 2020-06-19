@@ -34,7 +34,7 @@ function tabLiTemplate(city) {
          * the former active li is made inactive trough removing the css class active
          */
         let currentActiveNavItem = NAV_TABS_UL.getElementsByClassName('active');
-        if (currentActiveNavItem){
+        if (currentActiveNavItem[0]){
             currentActiveNavItem[0].classList.remove('active');
         }
         let thisNavItem = document.getElementById(city.id+'-tab');
@@ -69,7 +69,7 @@ function tabAContent(city){
                         <a class="nav-link active" id="${city.id}-tab"  role="tab">
                             ${city.name}
                             <button type="button" class="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true" id="${city.id}-span">&times;</span>
                             </button>
                         </a>`
     } else {
@@ -77,7 +77,7 @@ function tabAContent(city){
                         <a class="nav-link" id="${city.id}-tab" role="tab" >
                             ${city.name}
                             <button type="button" class="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true" id="${city.id}-span">&times;</span>
                             </button>
                         </a>`
     }

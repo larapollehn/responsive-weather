@@ -36,14 +36,10 @@ function Controller() {
             }
         )
 
-        self.cityNavItems[0].makeNavItemCurrent();
-        self.cityTabPanes[0].fillTabPaneWithContent();
-        self.cityTabPanes[0].showTabPane();
     }
+
+
+
     return self;
 }
 
-/**
- let paneContent = CityTabPaneContent(city);
- self.cityPaneContent.push(paneContent);
- **/

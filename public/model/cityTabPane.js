@@ -4,7 +4,6 @@
  * in this tab-pane is the tab-content
  */
 function CityTabPane(city) {
-    console.log(city);
     let self = {};
     self.tabPane = tabPaneTemplate(city);
 
@@ -43,6 +42,10 @@ function tabPaneTemplate(city) {
     let div = document.createElement('div');
     div.classList.add('city-pane');
     div.classList.add('fade');
+    if(document.getElementsByClassName('city-pane').length === 0){
+        div.classList.add('active');
+        div.classList.add('show');
+    }
     div.id = city.id;
     div.setAttribute('role', 'tabpanel');
     div.setAttribute('aria-labelledby', city.id + '-tab');

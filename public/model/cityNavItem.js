@@ -8,18 +8,6 @@ function CityNavItem(city) {
     self.a = tabAContent(city);
     self.li.innerHTML = self.a;
 
-    /**
-     * add css class managing visibility of tab-pane belonging to this nav-item
-     * and remove from the former active nav-item
-     */
-    self.makeNavItemCurrent = function () {
-        let currentActiveNavItem = NAV_TABS_UL.getElementsByClassName('active');
-        if (currentActiveNavItem){
-            currentActiveNavItem.classList.remove('active');
-        }
-        let thisNavItem = document.getElementById(city.id+'-tab');
-        thisNavItem.classList.add('active');
-    }
     return self;
 }
 
@@ -31,8 +19,16 @@ function tabLiTemplate(city) {
     li.setAttribute('role', 'presentation');
 
     li.addEventListener('click', function () {
-        let currentActiveTab = document.getElementsByClassName('show')[0];
+        console.log(city);
+        let currentActiveNavItem = NAV_TABS_UL.getElementsByClassName('active');
+        if (currentActiveNavItem){
+            currentActiveNavItem[0].classList.remove('active');
+        }
+        let thisNavItem = document.getElementById(city.id+'-tab');
+        thisNavItem.classList.add('active');
 
+        let currentActiveTab = document.getElementsByClassName('show')[0];
+        console.log(currentActiveTab);
         if (currentActiveTab) {
             currentActiveTab.classList.remove('active');
             currentActiveTab.classList.remove('show');

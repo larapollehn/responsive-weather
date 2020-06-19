@@ -30,13 +30,20 @@ function Controller() {
                 self.cityNavItems.push(navItem);
                 NAV_TABS_UL.appendChild(navItem);
 
-                let tabPane = CityTabPane(city).tabPane;
+                let tabPane = CityTabPane(city);
                 self.cityTabPanes.push(tabPane);
-                TAB_PANE_CONTAINER.appendChild(tabPane);
+                TAB_PANE_CONTAINER.appendChild(tabPane.tabPane);
             }
         )
-
+        self.renderStartCity();
     }
+
+    self.renderStartCity = function () {
+        let startCity = self.cities[0];
+        let tabPaneStartCity = self.cityTabPanes[0];
+        tabPaneStartCity.fillTabPaneWithContent(startCity);
+    }
+
 
 
 

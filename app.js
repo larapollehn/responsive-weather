@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const DEBUG = true;
 require('dotenv').config();
 
 const API_KEY = process.env.KEY;
 const API_URL = process.env.URL;
-const DEBUG = process.env.DEBUG;
 
 const app = express();
 

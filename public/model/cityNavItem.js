@@ -37,7 +37,6 @@ function tabLiTemplate(city) {
          * the former active tap-pane is made invisible by removing the classes active and show
          */
         let currentActiveTab = document.getElementsByClassName('show')[0];
-        console.log(currentActiveTab);
         if (currentActiveTab) {
             currentActiveTab.classList.remove('active');
             currentActiveTab.classList.remove('show');

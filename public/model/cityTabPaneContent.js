@@ -8,10 +8,6 @@ function CityTabPaneContent(city) {
     let self = {};
     self.tabPaneContent = tabPaneContentTemplate(city);
 
-    self.getTabPaneContent = function () {
-        console.log('getTabPaneContent', city);
-        return self.tabPaneContent;
-    }
     return self;
 }
 
@@ -33,7 +29,7 @@ function tabPaneContentTemplate(city){
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <p class="card-text">${city.city} | ${country}</p>
+                                <p class="card-text">${city.name} | ${country}</p>
                                 <h6 class="card-subtitle text-muted">as of ${timeStamp}</h6>
                                 <h2 class="card-title">${currentTemp}°</h2>
                                 <h4 class="card-subtitle text-muted">${weatherMain}</h4>

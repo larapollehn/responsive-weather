@@ -10,11 +10,16 @@ function CityTabPane(city) {
     /**
      * remove all child nodes in the tabPane and append new content
      */
-    self.fillTabPaneWithContent = function () {
-        while(self.tabPane.hasChildNodes()){
-            self.tabPane.removeChild(self.tabPane.firstChild);
+    self.fillTabPaneWithContent = function (city) {
+        console.log(city);
+        if(!city.data){
+            city.fetchData().then((response) => {
+                city.data = response.data;
+                self.tabPane.innerHTML = tabPaneContentTemplate(city);
+            }).catch((error) => {
+                console.log(error);
+            })
         }
-        self.tabPane.appendChild(self.tabPaneContent);
     }
 
     /**

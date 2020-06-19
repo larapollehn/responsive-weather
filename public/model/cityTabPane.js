@@ -11,8 +11,7 @@ function CityTabPane(city) {
      * remove all child nodes in the tabPane and append new content
      */
     self.fillTabPaneWithContent = function (city) {
-        console.log(city);
-        if(!city.data){
+        if(!city.data && self.tabPane.childNodes.length === 0){
             city.fetchData().then((response) => {
                 city.data = response.data;
                 self.tabPane.innerHTML = tabPaneContentTemplate(city);

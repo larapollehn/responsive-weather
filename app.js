@@ -16,7 +16,7 @@ app.post('/api', (req, res) => {
     let city = req.body['city'];
     let name = city.split(',')[0];
     let country = city.split(',')[1];
-    if(DEBUG === true) {
+    if(DEBUG === 'true') {
         res.send(mockObj);
     }else {
         axios({

@@ -23,7 +23,7 @@ function tabPaneContentTemplate(city){
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <p class="card-text">${name} | ${country}</p>
+                                <p class="card-text">${name} | ${country} <img src="https://www.countryflags.io/${country}/flat/24.png" alt="country-flag"></p>
                                 <h6 class="card-subtitle text-muted">as of ${timeStamp}</h6>
                                 <h2 class="card-title">${currentTemp}°</h2>
                                 <h4 class="card-subtitle text-muted">${weatherMain}</h4>

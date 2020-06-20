@@ -21,46 +21,49 @@ function tabPaneContentTemplate(city){
     let sunrise = unixTimeConverter(data['sys']['sunrise']); // unix time converted to human-readable time
     let sunset = unixTimeConverter(data['sys']['sunset']); // unix time converted to human-readable time
     return `
-                    <div class="card"> 
+                    <div class="card one"> 
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
-                                <p class="card-text">${name} | ${country} <img src="https://www.countryflags.io/${country}/flat/24.png" alt="country-flag"></p>
-                                <h6 class="card-subtitle text-muted">as of ${timeStamp}</h6>
-                                <h2 class="card-title">${currentTemp}°</h2>
-                                <h4 class="card-subtitle text-muted">${weatherMain}</h4>
+                            <div class="col-9 card-one">
+                                <div class="card-one-content"></div>
+                                <p class=" city-country-title">${name} | ${country} <img src="https://www.countryflags.io/${country}/flat/24.png" alt="country-flag"></p>
+                                <h6 class="timeStamp">as of ${timeStamp}</h6>
+                                <p class="temperature">${currentTemp}°</p>
+                                <p class="weatherMain">${weatherMain}</p>
                             </div>
-                            <div class="col">
-                                <img class="weatherIcon" style="background: url(${icon});">
-                                <p class="card-text">${weatherDescription}</p>
+                            <div class="col-3 card-one card-one-right">
+                                <div class="card-one-content">
+                                    <img class="weatherIcon" style="background: url(${icon});">
+                                    <p class="weatherDesc">${weatherDescription}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     </div>
-                    <div class="card">
+                    <div class="card two">
                         <div class="card-body row">
                             <div class="col">
-                                <h2 class="card-two-title">Cloudiness</h2>
-                                <p class="card-text">${cloudiness}%</p>
+                                <p class="card-two-title">Clouds</p>
+                                <p class="percentage">${cloudiness}%</p>
                                 <div class="meter">
                                     <span style="width: ${cloudiness}%"></span>
                                 </div>
                             </div>
                             <div class="col">
-                                <h2 class="card-two-title">Humidity</h2>
-                                <p class="card-text">${humidity}%</p>
+                                <p class="card-two-title">Humidity</p>
+                                <p class="percentage">${humidity}%</p>
                                 <div class="meter">
                                     <span style="width: ${humidity}%"></span>
                                 </div>
                             </div>
                             <div class="col">
-                                <h2 class="card-two-title">Windspeed</h2>
-                                <p class="card-text">${windSpeed}m/s</p>
+                                <p class="card-two-title">Wind</p>
+                                <p class="percentage">${windSpeed}m/s</p>
                                 <div class="windSpeed"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card three">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">

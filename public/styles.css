@@ -1,3 +1,128 @@
+p{
+    margin: 0;
+}
+
+#mainContainer{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 60px auto 40px;
+    grid-auto-columns: 100%;
+
+}
+
+#navContainer{
+    grid-row: 1/2;
+}
+
+.navbar{
+    height: 60px;
+    background-color: rgba(66,24,136,1) !important;
+}
+
+.btn{
+    background-color: rgba(0,192,255,1);
+    margin-left: 10px;
+}
+
+#contentContainer{
+    grid-row: 2/3;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.card{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.one{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.one{
+    text-align: left;
+    background: rgb(0,192,255);
+    background: linear-gradient(0deg, rgba(0,192,255,1) 0%, rgba(66,24,136,1) 100%);
+}
+
+.city-country-title{
+    font-size: 20px;
+    line-height: 20px;
+    color: #F5F5F5;
+    margin-bottom: 5px;
+}
+
+.timeStamp{
+    color: #DCDCDC;
+}
+
+.temperature{
+    font-size: 70px;
+    height: 70px;
+    line-height: 70px;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.weatherMain{
+    color: whitesmoke;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.card-one{
+    position: relative;
+}
+
+.card-one-content{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.card-one-right{
+    text-align: right;
+}
+
+.weatherDesc{
+    color: #F5F5F5;
+}
+
+.weatherIcon{
+    border: 1px solid whitesmoke;
+}
+
+.two{
+    background: rgb(189,235,250);
+    background: linear-gradient(0deg, rgba(189,235,250,1) 0%, rgba(0,192,255,1) 100%);
+}
+
+.card-two-title{
+    color: #F5F5F5;
+    font-size: 2vw;
+    font-min-size: 30px;
+}
+
+.percentage{
+    color: #F5F5F5;
+    font-weight: bold;
+}
+
+.three{
+    background-color: #bdebfa;
+}
+
+#footer{
+    grid-row: 3/4;
+    text-align: center;
+    line-height: 40px;
+}
+
 .weatherIcon {
     width: 100px;
     height: 100px;
@@ -21,7 +146,7 @@
 
 .meter {
     height: 20px; /* Can be anything */
-    background: #555;
+    background: rgba(66,24,136,1);
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
     border-radius: 25px;
@@ -38,8 +163,41 @@
     border-bottom-right-radius: 8px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    background-color: cornflowerblue;
+    background-color: rgb(147, 219, 241);
     box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     padding-bottom: 5px;
+}
+
+
+/** MEDIA QUERY **/
+
+@media only screen and (max-device-width: 768px) {
+    #contentContainer{
+        width: 100%;
+    }
+
+    .card-two-title{
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-device-width: 425px) {
+    .card-two-title{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-device-width: 320px) {
+    #contentContainer{
+        width: 100%;
+    }
+
+    .card-two-title{
+        font-size: 15px;
+    }
+
+    .one{
+        padding: 0;
+    }
 }

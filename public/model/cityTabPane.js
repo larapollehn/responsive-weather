@@ -36,27 +36,37 @@ function fillTabPaneWithContent(city, tabPane) {
         }).catch((error) => {
             console.log(error,city.id);
             toastr.error(`Sorry, We could not find data for ${city.name}.`);
-           removeInvalidCity(city);
+           removeInvalidCity(city, tabPane);
         })
     }
 }
 
-function removeInvalidCity(city) {
-    console.log('remove city', city);
+function removeInvalidCity(city, tabPaneFormer) {
     let nav = document.getElementById(city.id+'-tab');
     NAV_TABS_UL.removeChild(nav.parentElement);
     let tabPane = document.getElementById(city.id);
     TAB_PANE_CONTAINER.removeChild(tabPane);
     let cities = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    console.log(cities);
     for (let i = 0; i < cities.length; i++) {
         console.log(cities[i], city.name);
         if (cities[i] === city.name) {
             cities.splice(i, 1);
         }
     }
-    console.log(cities);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cities));
+    let activeTabPane = TAB_PANE_CONTAINER.getElementsByClassName('show')[0];
+    if(activeTabPane){
+        activeTabPane.classList.remove('show');
+        activeTabPane.classList.remove('active');
+    }
+    let firstPane = document.getElementsByClassName('city-pane')[0];
+    console.log(firstPane);
+    if(firstPane){
+        firstPane.classList.add('show');
+        firstPane.classList.add('active');
+        firstPane.style.display = 'block';
+    }
+
 }
 
 

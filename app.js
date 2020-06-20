@@ -8,7 +8,7 @@ const API_KEY = process.env.KEY;
 const API_URL = process.env.URL;
 const DEBUG = process.env.DEBUG;
 
-const redis_client = redis.createClient(6379);
+const redis_client = redis.createClient({host: process.env.REDIS_HOST, port: 6379});
 const app = express();
 
 app.use(express.static('public'));

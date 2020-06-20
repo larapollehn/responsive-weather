@@ -5,3 +5,6 @@ services:
     restart: always
     ports:
     - 3007:3000
+  app-redis:
+    image: redis:alpine
+    restart: always

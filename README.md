@@ -17,5 +17,5 @@ The weather data gets fetched from OpenWeatherMap API and cached with redis.
 ![alt-text](docs/full-app.png)
 
 # Mobile
-![alt-text](docs/mobil.png)
+<img src = "docs/mobil.png" width="200px"/>
 

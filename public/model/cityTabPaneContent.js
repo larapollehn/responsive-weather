@@ -6,6 +6,7 @@ const ICON_URL = 'http://openweathermap.org/img/wn/';
  */
 function tabPaneContentTemplate(city){
     const data = city.data;
+    let name = capitalizeIFirstLetter(city.name.split(',')[0]);
     let country = data['sys']['country']; // country code e.g. 'GB' for england
     let timeStamp = unixTimeConverter(data['dt']); // unix time converted to human-readable time
     let weatherMain = data['weather'][0]['main']; // string
@@ -22,7 +23,7 @@ function tabPaneContentTemplate(city){
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <p class="card-text">${city.name} | ${country}</p>
+                                <p class="card-text">${name} | ${country}</p>
                                 <h6 class="card-subtitle text-muted">as of ${timeStamp}</h6>
                                 <h2 class="card-title">${currentTemp}°</h2>
                                 <h4 class="card-subtitle text-muted">${weatherMain}</h4>

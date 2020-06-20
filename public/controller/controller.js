@@ -7,7 +7,6 @@ function Controller() {
     self.cityTabPanes = [];
 
     self.setup = function () {
-        console.log('setup', localStorage.getItem(LOCAL_STORAGE_KEY));
         self.getUserGeoLocation();
         if (localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(['London', 'Paris']));
@@ -33,7 +32,6 @@ function Controller() {
 
     self.getUserGeoLocation = function () {
         if (navigator.geolocation) {
-            console.log('geolocation available');
             navigator.geolocation.getCurrentPosition(showPosition, errorHandler);
         } else {
             console.log('GeoLocation not supported by browser');
@@ -131,7 +129,8 @@ function Controller() {
         let addCityBtn = document.getElementById('addCityBtn');
         addCityBtn.addEventListener('click', () => {
             let newCityName = document.getElementById('newCityName').value;
-            self.cityNames.push(newCityName);
+            let newCityCountry = document.getElementById('countrySelect').value;
+            self.cityNames.push(`${newCityName},${newCityCountry}`);
             let newCity = City(newCityName);
             self.cities.push(newCity);
             let navItem = CityNavItem(newCity).li;

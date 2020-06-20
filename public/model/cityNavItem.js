@@ -74,10 +74,11 @@ function tabLiTemplate(city) {
     return li;
 }
 function tabAContent(city){
+    let name = capitalizeIFirstLetter(city.name.split(',')[0]);
     if (document.getElementsByClassName('nav-item').length === 0) {
         return `
                         <a class="nav-link active" id="${city.id}-tab"  role="tab">
-                            ${city.name}
+                            ${name}
                             <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true" id="${city.id}-span">&times;</span>
                             </button>
@@ -85,7 +86,7 @@ function tabAContent(city){
     } else {
         return `
                         <a class="nav-link" id="${city.id}-tab" role="tab" >
-                            ${city.name}
+                            ${name}
                             <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true" id="${city.id}-span">&times;</span>
                             </button>

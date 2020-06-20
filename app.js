@@ -7,7 +7,7 @@ require('dotenv').config();
 const API_KEY = process.env.KEY;
 const API_URL = process.env.URL;
 const DEBUG = process.env.DEBUG;
-
+console.log(process.env.REDIS_HOST);
 const redis_client = redis.createClient({host: process.env.REDIS_HOST, port: 6379});
 const app = express();
 

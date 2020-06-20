@@ -16,6 +16,6 @@ The weather data gets fetched from OpenWeatherMap API and cached with redis.
 # Desktop
 ![alt-text](docs/full-app.png)
 
-#Mobile
+# Mobile
 ![alt-text](docs/mobil.png)
 

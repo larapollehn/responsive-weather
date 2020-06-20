@@ -1,4 +1,5 @@
 const express = require('express');
+const redis = require('redis');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 require('dotenv').config();
@@ -7,12 +8,32 @@ const API_KEY = process.env.KEY;
 const API_URL = process.env.URL;
 const DEBUG = process.env.DEBUG;
 
+const redis_client = redis.createClient(6379);
 const app = express();
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-app.post('/api', (req, res) => {
+//Middleware Function to Check Cache
+checkCache = (req, res, next) => {
+    const city = req.body['city'];
+
+    redis_client.get(city, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send(err);
+        }
+        //if no match found
+        if (data != null) {
+            res.send(data);
+        } else {
+            //proceed to next middleware function
+            next();
+        }
+    });
+};
+
+app.post('/api', checkCache, (req, res) => {
     let city = req.body['city'];
     let name = city.split(',')[0];
     let country = city.split(',')[1];
@@ -23,7 +44,9 @@ app.post('/api', (req, res) => {
             method: 'get',
             url: API_URL + '?q=' + name + ',' + country + '&appid=' + API_KEY
         }).then((response) => {
-            res.send(JSON.stringify(response.data));
+            const data = JSON.stringify(response.data);
+            redis_client.setex(city, 1800, data);
+            res.send(data);
         }).catch((error) => {
             res.status(error.response.status).send(error.response.data);
         });

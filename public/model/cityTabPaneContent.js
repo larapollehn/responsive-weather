@@ -5,8 +5,10 @@ const ICON_URL = 'http://openweathermap.org/img/wn/';
  *  fetched from the open weather api (City fetchData()) and divided upon three card elements(<div>)
  */
 function tabPaneContentTemplate(city){
+    console.log(city);
     const data = city.data;
-    let name = capitalizeIFirstLetter(city.name.split(',')[0]);
+    //let name = capitalizeIFirstLetter(city.name.split(',')[0]);
+    let name = data['name'];
     let country = data['sys']['country']; // country code e.g. 'GB' for england
     let timeStamp = unixTimeConverter(data['dt']); // unix time converted to human-readable time
     let weatherMain = data['weather'][0]['main']; // string

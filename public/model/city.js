@@ -18,6 +18,17 @@ function City(name) {
         });
     }
 
+    self.fetchUserLocationData = function (lat, lon) {
+        return axios({
+            method: 'post',
+            url: '/api/user',
+            data: {
+                lat: lat,
+                lon: lon
+            }
+        });
+    }
+
     return self;
 }
 

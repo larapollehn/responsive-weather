@@ -7,18 +7,14 @@ function Controller() {
     self.cityTabPanes = [];
 
     self.setup = function () {
-        self.getUserGeoLocation();
         if (localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(['London', 'Paris']));
-            self.cityNames = ['London', 'Paris'];
-            self.cityNames.forEach(nameOfCity => {
-                let city = City(nameOfCity);
-                self.cities.push(city);
-            });
-            self.renderStartView();
+            console.log('ls is null');
+            self.getUserGeoLocation();
+            //self.getUserGeoLocation();
             // Display cute thing to get user to add a city
         } else if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).length === 0) {
             console.log('ls length 0');
+            self.getUserGeoLocation();
         } else {
             let cities = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
             self.cityNames = cities;
@@ -38,8 +34,21 @@ function Controller() {
         }
 
         function showPosition(position) {
-            console.log('showPosition');
-            alert(`Lat: ${position.coords.latitude}, Long: ${position.coords.longitude}`);
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            console.log(lat, lon);
+            let city = City('Your Location');
+            self.cities.push(city);
+
+            let navItem = CityNavItem(city).li;
+            NAV_TABS_UL.appendChild(navItem);
+
+            let tabPane = CityTabPane(city);
+            self.cityTabPanes.push(tabPane);
+            TAB_PANE_CONTAINER.appendChild(tabPane.tabPane);
+
+            getUserLocationContent(city, lat, lon, tabPane.tabPane);
+
         }
 
         function errorHandler(error) {

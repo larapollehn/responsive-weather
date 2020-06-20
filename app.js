@@ -30,6 +30,19 @@ app.post('/api', (req, res) => {
     }
 })
 
+app.post('/api/user', (req, res) => {
+    let lat = req.body['lat'];
+    let lon = req.body['lon'];
+    axios({
+        method: 'get',
+        url: API_URL + '?lat=' + lat + '&lon=' + lon + '&appid=' + API_KEY
+    }).then((response) => {
+        res.send(JSON.stringify(response.data));
+    }).catch((error) => {
+        res.status(error.response.status).send(error.response.data);
+    });
+})
+
 app.listen(3000);
 
 const mockObj = {

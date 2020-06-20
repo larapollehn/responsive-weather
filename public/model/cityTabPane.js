@@ -31,11 +31,22 @@ function fillTabPaneWithContent(city, tabPane) {
     if(!city.data && tabPane.childNodes.length === 0){
         city.fetchData().then((response) => {
             city.data = response.data;
+            console.log(tabPane);
             tabPane.innerHTML = tabPaneContentTemplate(city);
         }).catch((error) => {
             console.log(error);
         })
     }
+}
+
+function getUserLocationContent(city, lat, lon, tabPane) {
+    city.fetchUserLocationData(lat, lon).then((response) => {
+        city.data = response.data;
+        console.log(response.data);
+        tabPane.innerHTML = tabPaneContentTemplate(city);
+    }).catch((error) => {
+        console.log(error);
+    })
 }
 
 function tabPaneTemplate(city) {

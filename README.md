@@ -14,7 +14,7 @@ This web app provides weather data for cities of your choice.
 The weather data gets fetched from OpenWeatherMap API and cached with redis. 
 
 # Desktop
-<img src = "docs/full-app.png" width="600px"/>
+<img src = "docs/full-app.png" width="800px"/>
 
 # Mobile
 <img src = "docs/mobil.png" width="300px"/>

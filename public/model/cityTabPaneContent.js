@@ -66,17 +66,17 @@ function tabPaneContentTemplate(city){
                     <div class="card three">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col">
+                                <div class="col card-three">
                                     <img class="sunImage" src="../images/sunrise.png">
                                 </div>
-                                <div class="col sunTime">
-                                    <p class="card-text">${sunrise}</p>
+                                <div class="col card-three">
+                                    <p class="sunTime morning">${sunrise}</p>
                                 </div>
-                                <div class="col">
+                                <div class="col card-three">
                                     <img  class="sunImage"  src="../images/sunset.png">
                                 </div>
-                                <div class="col sunTime">
-                                    <p class="card-text">${sunset}</p>
+                                <div class="col card-three">
+                                    <p class="sunTime evening">${sunset}</p>
                                 </div>
                             </div>
                         </div>

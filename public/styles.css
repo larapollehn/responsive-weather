@@ -21,8 +21,9 @@ p{
 }
 
 .btn{
-    background-color: rgba(0,192,255,1);
+    background-color: #2956b4;
     margin-left: 10px;
+    color: #F5F5F5;
 }
 
 #contentContainer{
@@ -117,6 +118,20 @@ p{
     background-color: #bdebfa;
 }
 
+.card-three{
+    padding: 0 !important;
+    position: relative;
+}
+
+.sunTime{
+    font-size: 2vw;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    color: white;
+}
+
+
 #footer{
     grid-row: 3/4;
     text-align: center;
@@ -180,11 +195,22 @@ p{
     .card-two-title{
         font-size: 30px;
     }
+
+    .sunTime{
+        font-size: 30px;
+    }
 }
 
 @media only screen and (max-device-width: 425px) {
     .card-two-title{
         font-size: 20px;
+    }
+    .sunTime{
+        font-size: 20px;
+    }
+    .one{
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -197,7 +223,13 @@ p{
         font-size: 15px;
     }
 
+    .sunTime{
+        font-size: 15px;
+        line-height: 50px;
+    }
+
     .one{
-        padding: 0;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }

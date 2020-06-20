@@ -12,7 +12,6 @@ function CityTabPane(city) {
      * and remove from all other tab panes if they have those classes
      */
     self.showTabPane = function () {
-        console.log('showTabPane', city);
         let activeTabPane = TAB_PANE_CONTAINER.getElementsByClassName('show')[0];
         if(activeTabPane){
             activeTabPane.classList.remove('show');
@@ -20,10 +19,6 @@ function CityTabPane(city) {
         }
         self.tabPane.classList.add('show');
         self.tabPane.classList.add('active');
-    }
-
-    self.hideTabPane = function () {
-
     }
     return self;
 }

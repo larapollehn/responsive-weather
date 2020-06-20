@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const DEBUG = true;
 require('dotenv').config();
 
 const API_KEY = process.env.KEY;
 const API_URL = process.env.URL;
+const DEBUG = process.env.DEBUG;
 
 const app = express();
 
@@ -13,13 +13,15 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.post('/api', (req, res) => {
-    let cityName = req.body['cityName'];
+    let city = req.body['city'];
+    let name = city.split(',')[0];
+    let country = city.split(',')[1];
     if(DEBUG === true) {
         res.send(mockObj);
     }else {
         axios({
             method: 'get',
-            url: API_URL + '?q=' + cityName + '&appid=' + API_KEY
+            url: API_URL + '?q=' + name + ',' + country + '&appid=' + API_KEY
         }).then((response) => {
             res.send(JSON.stringify(response.data));
         }).catch((error) => {

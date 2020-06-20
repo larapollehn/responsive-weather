@@ -131,7 +131,7 @@ function Controller() {
             let newCityName = document.getElementById('newCityName').value;
             let newCityCountry = document.getElementById('countrySelect').value;
             self.cityNames.push(`${newCityName},${newCityCountry}`);
-            let newCity = City(newCityName);
+            let newCity = City(`${newCityName},${newCityCountry}`);
             self.cities.push(newCity);
             let navItem = CityNavItem(newCity).li;
             NAV_TABS_UL.appendChild(navItem);

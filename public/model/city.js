@@ -13,7 +13,7 @@ function City(name) {
             method: 'post',
             url: '/api',
             data: {
-                cityName: name
+                city: name
             }
         });
     }

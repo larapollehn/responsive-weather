@@ -16,4 +16,4 @@ RUN mv dist/all-min.js public/all-min.js
 
 RUN mv public/prod.index.html public/index.html
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "prod"]

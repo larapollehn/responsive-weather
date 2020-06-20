@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "prod": "NODE_ENV=production node app.js"
   },
   "keywords": [],
   "author": "",

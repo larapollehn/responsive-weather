@@ -5,8 +5,6 @@ services:
     restart: always
     ports:
     - 3007:3000
-    environment:
-      - REDIS_HOST=app-redis
   app-redis:
     image: redis:alpine
     restart: always

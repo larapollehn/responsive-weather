@@ -8,6 +8,7 @@ function Controller() {
 
     self.setup = function () {
         console.log('setup', localStorage.getItem(LOCAL_STORAGE_KEY));
+        self.getUserGeoLocation();
         if (localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(['London', 'Paris']));
             self.cityNames = ['London', 'Paris'];
@@ -27,6 +28,25 @@ function Controller() {
                 self.cities.push(city);
             });
             self.renderStartView();
+        }
+    }
+
+    self.getUserGeoLocation = function () {
+        if (navigator.geolocation) {
+            console.log('geolocation available');
+            navigator.geolocation.getCurrentPosition(showPosition, errorHandler);
+        } else {
+            console.log('GeoLocation not supported by browser');
+        }
+
+        function showPosition(position) {
+            console.log('showPosition');
+            alert(`Lat: ${position.coords.latitude}, Long: ${position.coords.longitude}`);
+        }
+
+        function errorHandler(error) {
+            console.log('errorHandler');
+            console.log(error);
         }
     }
 
@@ -80,7 +100,7 @@ function Controller() {
                 event.stopPropagation();
 
                 let liOfCity = document.getElementById(cityId + '-tab');
-                if(liOfCity){
+                if (liOfCity) {
                     //find the nav-item (<li>) whose closeBtn was clicked
                     let navItemOfCity = liOfCity.parentElement;
                     //delete found nav-item from nav-tabs(<ul>)
@@ -90,7 +110,7 @@ function Controller() {
 
                 //find tab-pane(<div>) belonging to city that is being deleted
                 let tabPaneOfCity = document.getElementById(cityId);
-                if(tabPaneOfCity){
+                if (tabPaneOfCity) {
                     TAB_PANE_CONTAINER.removeChild(tabPaneOfCity);
                 }
 

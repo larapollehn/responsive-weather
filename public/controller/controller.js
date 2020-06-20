@@ -13,7 +13,7 @@ function Controller() {
             //self.getUserGeoLocation();
             // Display cute thing to get user to add a city
         } else if (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)).length === 0) {
-            console.log('ls length 0');
+            toastr.info('Add your first city.');
             self.getUserGeoLocation();
         } else {
             let cities = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));

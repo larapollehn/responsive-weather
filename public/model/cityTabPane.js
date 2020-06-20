@@ -34,10 +34,31 @@ function fillTabPaneWithContent(city, tabPane) {
             console.log(tabPane);
             tabPane.innerHTML = tabPaneContentTemplate(city);
         }).catch((error) => {
-            console.log(error);
+            console.log(error,city.id);
+            toastr.error(`Sorry, We could not find data for ${city.name}.`);
+           removeInvalidCity(city);
         })
     }
 }
+
+function removeInvalidCity(city) {
+    console.log('remove city', city);
+    let nav = document.getElementById(city.id+'-tab');
+    NAV_TABS_UL.removeChild(nav.parentElement);
+    let tabPane = document.getElementById(city.id);
+    TAB_PANE_CONTAINER.removeChild(tabPane);
+    let cities = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    console.log(cities);
+    for (let i = 0; i < cities.length; i++) {
+        console.log(cities[i], city.name);
+        if (cities[i] === city.name) {
+            cities.splice(i, 1);
+        }
+    }
+    console.log(cities);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cities));
+}
+
 
 function getUserLocationContent(city, lat, lon, tabPane) {
     city.fetchUserLocationData(lat, lon).then((response) => {

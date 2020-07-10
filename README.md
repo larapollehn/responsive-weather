@@ -11,7 +11,7 @@
 
 This web app provides weather data for cities of your choice. 
 
-The weather data gets fetched from OpenWeatherMap API and cached with redis. 
+The weather data gets fetched from OpenWeatherMap API and is cached with redis. 
 
 # Desktop
 Desktop version on 1920 x 1080 monitor.
